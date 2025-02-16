@@ -1,7 +1,6 @@
 package com.namu.object._02_movie;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
