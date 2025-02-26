@@ -1,4 +1,4 @@
-package com.namu.object._03_movie;
+package com.namu.object._04_movie;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

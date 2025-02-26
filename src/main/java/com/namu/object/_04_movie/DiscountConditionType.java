@@ -1,4 +1,4 @@
-package com.namu.object._03_movie;
+package com.namu.object._04_movie;
 
 public enum DiscountConditionType {
     SEQUENCE, // 순번 조건

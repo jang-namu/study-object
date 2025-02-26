@@ -1,4 +1,4 @@
-package com.namu.object._03_movie;
+package com.namu.object._04_movie;
 
 public enum MovieType {
     AMOUNT_DISCOUNT,  // 금액 할인 정책

@@ -1,4 +1,4 @@
-package com.namu.object._03_movie;
+package com.namu.object._04_movie;
 
 import com.namu.object._02_movie.Customer;
 import com.namu.object._02_movie.Money;
