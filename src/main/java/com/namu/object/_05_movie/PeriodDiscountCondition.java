@@ -4,30 +4,20 @@ import com.namu.object._04_movie.DiscountConditionType;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class DiscountCondition {
-    private DiscountConditionType type;
-    private int sequence;
+public class PeriodDiscountCondition {
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public boolean isSatisfiedBy(Screening screening) {
-        if (type == DiscountConditionType.PERIOD) {
-            return isSatisfiedByPeriod(screening);
-        }
-        return isSatisfiedBySequence(screening);
+    public PeriodDiscountCondition(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    private boolean isSatisfiedBySequence(Screening screening) {
-        return sequence == screening.getSequence();
-    }
-
-    private boolean isSatisfiedByPeriod(Screening screening) {
+    private boolean isSatisfiedBy(Screening screening) {
         return dayOfWeek.equals(screening.getWhenScreened().getDayOfWeek()) &&
                 startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
                 endTime.compareTo(screening.getWhenScreened().toLocalTime()) > 0;
     }
-
-
 }
-
