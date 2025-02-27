@@ -1,10 +1,9 @@
 package com.namu.object._05_movie;
 
-import com.namu.object._04_movie.DiscountConditionType;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class PeriodDiscountCondition {
+public class PeriodDiscountCondition implements DiscountCondition {
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;

@@ -1,16 +1,13 @@
 package com.namu.object._05_movie;
 
-import com.namu.object._02_movie.DiscountCondition;
 import com.namu.object._02_movie.Money;
-import com.namu.object._05_movie.MovieType;
 import java.util.List;
 
 public class Movie {
     private String title;
     private Duration duration;
     private Money fee;
-    private List<PeriodDiscountCondition> periodDiscountConditions;
-    private List<SequenceDiscountCondition> sequenceDiscountConditions;
+    private List<DiscountCondition> discountConditions;
 
     private MovieType movieType;
     private Money discountAmount;
@@ -24,16 +21,7 @@ public class Movie {
     }
 
     private boolean isDiscountable(Screening screening) {
-        return checkPeriodDiscountConditions(screening) || checkSequenceDiscountConditions(screening);
-    }
-
-    private boolean checkPeriodDiscountConditions(Screening screening) {
-        return periodDiscountConditions.stream()
-                .anyMatch(condition -> condition.isSatisfiedBy(screening));
-    }
-
-    private boolean checkSequenceDiscountConditions(Screening screening) {
-        return sequenceDiscountConditions.stream()
+        return discountConditions.stream()
                 .anyMatch(condition -> condition.isSatisfiedBy(screening));
     }
 

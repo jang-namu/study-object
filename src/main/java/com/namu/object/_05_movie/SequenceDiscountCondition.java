@@ -1,7 +1,7 @@
 package com.namu.object._05_movie;
 
 
-public class SequenceDiscountCondition {
+public class SequenceDiscountCondition implements DiscountCondition {
     private int sequence;
 
     public SequenceDiscountCondition(int sequence) {
