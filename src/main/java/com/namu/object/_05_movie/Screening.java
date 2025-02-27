@@ -1,5 +1,6 @@
 package com.namu.object._05_movie;
 
+import com.namu.object._02_movie.Money;
 import java.time.LocalDateTime;
 
 public class Screening {
@@ -8,6 +9,10 @@ public class Screening {
     private LocalDateTime whenScreened;
 
     public Reservation reserve(Customer customer, int audienceCount) {
+        return new Reservation(customer, this, calculateFee(audienceCount), audienceCount);
+    }
 
+    private Money calculateFee(int audienceCount) {
+        return movie.calculateMovieFee(this).times(audienceCount);
     }
 }
