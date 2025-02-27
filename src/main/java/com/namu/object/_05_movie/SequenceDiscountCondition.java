@@ -8,7 +8,7 @@ public class SequenceDiscountCondition implements DiscountCondition {
         this.sequence = sequence;
     }
 
-    private boolean isSatisfiedBy(Screening screening) {
+    public boolean isSatisfiedBy(Screening screening) {
         return sequence == screening.getSequence();
     }
 
