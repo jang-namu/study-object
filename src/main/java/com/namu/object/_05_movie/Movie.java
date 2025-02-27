@@ -1,17 +1,21 @@
 package com.namu.object._05_movie;
 
 import com.namu.object._02_movie.Money;
+import java.util.Arrays;
 import java.util.List;
 
-public class Movie {
+public abstract class Movie {
     private String title;
     private Duration duration;
     private Money fee;
     private List<DiscountCondition> discountConditions;
 
-    private MovieType movieType;
-    private Money discountAmount;
-    private double discountPercent;
+    public Movie(String title, Duration duration, Money fee, DiscountCondition... discountConditions) {
+        this.title = title;
+        this.duration = duration;
+        this.fee = fee;
+        this.discountConditions = Arrays.asList(discountConditions);
+    }
 
     public Money calculateMovieFee(Screening screening) {
         if (isDiscountable(screening)) {
@@ -25,29 +29,10 @@ public class Movie {
                 .anyMatch(condition -> condition.isSatisfiedBy(screening));
     }
 
-    private Money calculateDiscountAmount() {
-        switch (movieType) {
-            case AMOUNT_DISCOUNT:
-                return calculateAmountDiscountAmount();
-            case PERCENT_DISCOUNT:
-                return calculatePercentDiscountAmount();
-            case NONE_DISCOUNT:
-                return calculateNoneDiscountAmount();
-        }
-        throw new IllegalStateException();
-    }
+    abstract protected Money calculateDiscountAmount();
 
-    private Money calculateNoneDiscountAmount() {
-        return Money.ZERO;
+    protected Money getFee() {
+        return fee;
     }
-
-    private Money calculatePercentDiscountAmount() {
-        return fee.times(discountPercent);
-    }
-
-    private Money calculateAmountDiscountAmount() {
-        return discountAmount;
-    }
-
 }
 
