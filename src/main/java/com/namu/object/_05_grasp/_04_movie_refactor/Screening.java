@@ -9,16 +9,7 @@ public class Screening {
     private LocalDateTime whenScreened;
 
     public Money calculateMovieFee(int audienceCount) {
-        if (checkDiscountable()) {
-            return movie.getFee()
-                    .minus(movie.calculateDiscountAmount())
-                    .times(audienceCount);
-        }
-        return movie.getFee().times(audienceCount);
-    }
-    private boolean checkDiscountable() {
-        return movie.getDiscountConditions().stream()
-                .anyMatch(condition -> condition.isDiscountable(this));
+        return movie.calculateMovieFee(this).times(audienceCount);
     }
 
     public int getSequence() {
