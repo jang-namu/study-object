@@ -18,34 +18,10 @@ public class ReservationAgency {
     private Money calculateMovieFee(Screening screening, int audienceCount, boolean discountable) {
         if (discountable) {
             return screening.getMovie().getFee()
-                    .minus(calculateDiscountAmount(screening.getMovie()))
+                    .minus(screening.getMovie().calculateDiscountAmount())
                     .times(audienceCount);
         }
         return screening.getMovie().getFee().times(audienceCount);
-    }
-
-    private Money calculateDiscountAmount(Movie movie) {
-        switch (movie.getMovieType()) {
-            case AMOUNT_DISCOUNT:
-                return calculateAmountDiscountAmount(movie);
-            case PERCENT_DISCOUNT:
-                return calculatePercentDiscountAmount(movie);
-            case NONE_DISCOUNT:
-                return calculateNoneDiscountAmount(movie);
-        }
-        throw new IllegalStateException();
-    }
-
-    private Money calculateAmountDiscountAmount(Movie movie) {
-        return movie.getDiscountAmount();
-    }
-
-    private Money calculatePercentDiscountAmount(Movie movie) {
-        return movie.getFee().times(movie.getDiscountPercent());
-    }
-
-    private Money calculateNoneDiscountAmount(Movie movie) {
-        return Money.ZERO;
     }
 
     private Reservation createReservation(Screening screening, Customer customer, int audienceCount, Money fee) {
