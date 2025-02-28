@@ -13,7 +13,19 @@ public class Movie {
     private Money discountAmount;
     private double discountPercent;
 
-    public Money calculateDiscountAmount() {
+    public Money calculateMovieFee(Screening screening) {
+        if (checkDiscountable(screening)) {
+            return fee.minus(calculateDiscountAmount());
+        }
+        return fee;
+    }
+
+    private boolean checkDiscountable(Screening screening) {
+        return discountConditions.stream()
+                .anyMatch(condition -> condition.isDiscountable(screening));
+    }
+
+    private Money calculateDiscountAmount() {
         switch (movieType) {
             case AMOUNT_DISCOUNT:
                 return calculateAmountDiscountAmount();
@@ -22,7 +34,7 @@ public class Movie {
             case NONE_DISCOUNT:
                 return calculateNoneDiscountAmount();
         }
-        throw new IllegalStateException();
+        return Money.ZERO;
     }
 
     private Money calculateAmountDiscountAmount() {
@@ -37,11 +49,4 @@ public class Movie {
         return Money.ZERO;
     }
 
-    public Money getFee() {
-        return fee;
-    }
-
-    public List<DiscountCondition> getDiscountConditions() {
-        return discountConditions;
-    }
 }
