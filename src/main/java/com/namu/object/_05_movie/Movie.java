@@ -4,22 +4,25 @@ import com.namu.object._02_movie.Money;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Movie {
+public class Movie {
     private String title;
     private Duration duration;
     private Money fee;
     private List<DiscountCondition> discountConditions;
+    private DiscountPolicy discountPolicy;
 
-    public Movie(String title, Duration duration, Money fee, DiscountCondition... discountConditions) {
+    public Movie(String title, Duration duration, Money fee, DiscountPolicy discountPolicy,
+                 DiscountCondition... discountConditions) {
         this.title = title;
         this.duration = duration;
         this.fee = fee;
         this.discountConditions = Arrays.asList(discountConditions);
+        this.discountPolicy = discountPolicy;
     }
 
     public Money calculateMovieFee(Screening screening) {
         if (isDiscountable(screening)) {
-            return fee.minus(calculateDiscountAmount());
+            return fee.minus(discountPolicy.calculateDiscountAmount(this));
         }
         return fee;
     }
@@ -32,8 +35,6 @@ public abstract class Movie {
     protected Money getFee() {
         return fee;
     }
-
-    abstract protected Money calculateDiscountAmount();
 
 }
 
