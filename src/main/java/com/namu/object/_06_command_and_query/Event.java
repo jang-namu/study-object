@@ -17,7 +17,7 @@ public class Event {
     public boolean isSatisfied(RecurringSchedule schedule) {
         if (from.getDayOfWeek() != schedule.getDayOfWeek() ||
                 !from.toLocalTime().equals(schedule.getFrom()) ||
-                duration.equals(schedule.getDuration())) {
+                !duration.equals(schedule.getDuration())) {
             return false;
         }
         return true;
