@@ -29,10 +29,11 @@ public abstract class Movie {
                 .anyMatch(condition -> condition.isSatisfiedBy(screening));
     }
 
-    abstract protected Money calculateDiscountAmount();
-
     protected Money getFee() {
         return fee;
     }
+
+    abstract protected Money calculateDiscountAmount();
+
 }
 
