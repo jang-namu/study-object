@@ -1,4 +1,4 @@
-package com.namu.object._05_movie;
+package com.namu.object._05_grasp._05_movie;
 
 import com.namu.object._02_movie.Money;
 import java.time.LocalDateTime;
