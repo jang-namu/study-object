@@ -1,16 +1,18 @@
 package com.namu.object._05_movie;
 
+import com.namu.object._02_movie.DefaultDiscountPolicy;
 import com.namu.object._02_movie.Money;
 
 public class PercentDiscountPolicy extends DiscountPolicy {
     private double percent;
 
-    public PercentDiscountPolicy(double percent) {
+    public PercentDiscountPolicy(double percent, DiscountCondition... discountConditions) {
+        super(discountConditions);
         this.percent = percent;
     }
 
     @Override
-    Money getDiscountAmount(Movie movie) {
+    protected Money getDiscountAmount(Movie movie) {
         return movie.getFee().times(percent);
     }
 }
