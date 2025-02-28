@@ -2,6 +2,7 @@ package com.namu.object._05_grasp._04_movie_refactor;
 
 import com.namu.object._02_movie.Money;
 import com.namu.object._04_movie.MovieType;
+import java.time.Duration;
 import java.util.List;
 
 public class Movie {
