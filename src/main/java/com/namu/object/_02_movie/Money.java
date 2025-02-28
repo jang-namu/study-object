@@ -1,9 +1,12 @@
 package com.namu.object._02_movie;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
+    private static final int DEFAULT_SCALE = 2;
+    private static final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;
     public static final Money ZERO = Money.wons(0);
 
     private final BigDecimal amount;
@@ -17,7 +20,7 @@ public class Money {
     }
 
     public Money(BigDecimal amount) {
-        this.amount = amount;
+        this.amount = amount.setScale(DEFAULT_SCALE, DEFAULT_ROUNDING);
     }
 
     public Money plus(Money amount) {
@@ -29,8 +32,7 @@ public class Money {
     }
 
     public Money times(double percent) {
-        return new Money(this.amount.multiply(
-                BigDecimal.valueOf(percent)));
+        return new Money(this.amount.multiply(BigDecimal.valueOf(percent)));
     }
 
     public boolean isLessThan(Money other) {
@@ -56,5 +58,12 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hashCode(amount);
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                '}';
     }
 }
