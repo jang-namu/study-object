@@ -1,7 +1,6 @@
 package com.namu.object._05_grasp._04_movie_refactor;
 
 import com.namu.object._02_movie.Money;
-import com.namu.object._04_movie.DiscountCondition;
 import com.namu.object._04_movie.MovieType;
 import java.util.List;
 
@@ -38,4 +37,11 @@ public class Movie {
         return Money.ZERO;
     }
 
+    public Money getFee() {
+        return fee;
+    }
+
+    public List<DiscountCondition> getDiscountConditions() {
+        return discountConditions;
+    }
 }
