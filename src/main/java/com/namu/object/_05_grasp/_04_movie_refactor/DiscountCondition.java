@@ -1,6 +1,5 @@
 package com.namu.object._05_grasp._04_movie_refactor;
 
-import com.namu.object._02_movie.Screening;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
@@ -19,9 +18,9 @@ public class DiscountCondition {
     }
 
     private boolean isSatisfiedByPeriod(Screening screening) {
-        return screening.getWhenScreened.getDayOfWeek().equals(dayOfWeek) &&
+        return screening.getWhenScreened().getDayOfWeek().equals(dayOfWeek) &&
                 startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
-                endTime.compareTo(screening.getWhenScreened.toLocalTime()) >= 0;
+                endTime.compareTo(screening.getWhenScreened().toLocalTime()) >= 0;
     }
 
     private boolean isSatisfiedBySequence(Screening screening) {
