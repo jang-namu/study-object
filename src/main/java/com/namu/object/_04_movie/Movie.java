@@ -1,6 +1,7 @@
 package com.namu.object._04_movie;
 
 import com.namu.object._02_movie.Money;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 

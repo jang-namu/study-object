@@ -1,6 +1,8 @@
 package com.namu.object._05_grasp._04_movie_refactor;
 
 import com.namu.object._02_movie.Money;
+import com.namu.object._05_grasp._04_movie_refactor.test_support.Customer;
+import com.namu.object._05_grasp._04_movie_refactor.test_support.Reservation;
 
 public class ReservationAgency {
     public Reservation reserve(Screening screening, Customer customer, int audienceCount) {
